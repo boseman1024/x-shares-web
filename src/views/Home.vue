@@ -1,18 +1,39 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <xCardImg class="item" v-for="i in list" :info="i" :simple="false"></xCardImg>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import { mapGetters } from 'vuex';
+import xCardImg from '@/components/x-card-img';
 export default {
   name: "home",
-  components: {
-    HelloWorld
+  components: {xCardImg},
+  data(){
+  	return{
+  		title:'首页',
+  		list:[]
+  	}
+  },
+  computed:{
+    ...mapGetters({
+      user:'getUserInfo'
+    }),
+  },
+  mounted(){
+    this.$store.dispatch("getIndex",this.user.ID).then(res=>{
+      this.list = res;
+    });
   }
 };
 </script>
+<style scoped lang="less">
+.home{
+	margin:0 auto;
+	width:600px;
+  .item{
+    margin-bottom:30px;
+  }
+}
+</style>
