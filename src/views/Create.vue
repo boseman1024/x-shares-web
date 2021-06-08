@@ -1,5 +1,15 @@
 <template>
   <div class="create">
+    <div class="form">
+      <select v-model="category">
+        <option value="" disabled selected style="display:none;"
+          >选择类目</option
+        >
+        <option v-for="item in categories" :key="item.ID" :value="item.ID">{{
+          item.Name
+        }}</option>
+      </select>
+    </div>
     <div class="share">
       <input v-show="hasImg" class="upload" type="file" @change="chooseFile" />
       <img
@@ -46,6 +56,7 @@
 </template>
 
 <script>
+import category from "@/api/category";
 import { mapGetters } from "vuex";
 export default {
   name: "create",
@@ -59,7 +70,9 @@ export default {
       curTag: {},
       tags: [],
       currentX: 0,
-      currentY: 0
+      currentY: 0,
+      category: "",
+      categories: []
     };
   },
   computed: {
@@ -72,7 +85,8 @@ export default {
       let data = {
         file: this.file,
         user: this.user,
-        tags: this.tags
+        tags: this.tags,
+        categoryId: this.category
       };
       this.$store.dispatch("addShare", data).then(res => {});
     },
@@ -118,9 +132,17 @@ export default {
         document.onmousemove = null;
         document.onmouseup = null;
       };
+    },
+    getCategories() {
+      category.getCategoryList({}).then(res => {
+        console.log(res);
+        this.categories = res.data || [];
+      });
     }
   },
-  mounted() {}
+  mounted() {
+    this.getCategories();
+  }
 };
 </script>
 <style scoped lang="less">
@@ -218,6 +240,27 @@ export default {
       justify-content: center;
       align-items: center;
       cursor: pointer;
+    }
+  }
+  .form {
+    width: 600px;
+    border-left: 1px solid #ededed;
+    border-right: 1px solid #ededed;
+    border-top: 1px solid #ededed;
+    background: #000;
+    color: #fff;
+    height: 50px;
+    select {
+      width: 600px;
+      height: 50px;
+      background: none;
+      color: #fff;
+      font-size: 16px;
+      padding: 0 20px;
+      option {
+        color: #000;
+        paadding: 20px 0;
+      }
     }
   }
 }

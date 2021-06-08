@@ -10,6 +10,7 @@ const share = {
     params.append("file", data.file);
     params.append("userId", data.user.ID);
     params.append("tags", JSON.stringify(data.tags));
+    params.append("categoryId", data.categoryId);
     const config = {
       headers: { "Content-Type": "multipart/form-data" }
     };

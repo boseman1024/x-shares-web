@@ -14,7 +14,8 @@ import {
   uniTagAlt,
   uniTrashAlt,
   uniEye,
-  uniTimes
+  uniTimes,
+  uniGoogleHangoutsAlt
 } from "vue-unicons/dist/icons";
 
 Unicon.add([
@@ -26,7 +27,8 @@ Unicon.add([
   uniTagAlt,
   uniTrashAlt,
   uniEye,
-  uniTimes
+  uniTimes,
+  uniGoogleHangoutsAlt
 ]);
 Vue.use(Unicon);
 

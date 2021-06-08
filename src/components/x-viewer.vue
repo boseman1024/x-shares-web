@@ -79,6 +79,15 @@
               :fill="isHeart ? '#FF4500' : '#262626'"
               @click="changeHeart"
             ></unicon>
+            <div class="opItem-r">
+              <unicon
+                class="pointer"
+                name="google-hangouts-alt"
+                fill="'#FF4500"
+                @click="changeHeart"
+              ></unicon>
+              <span>{{ data.category.Name }}</span>
+            </div>
           </div>
           <div class="send">
             <input
@@ -344,6 +353,16 @@ export default {
           border-top: 1px solid #ededed;
           .opItem {
             margin-left: 20px;
+          }
+          .opItem-r{
+            margin-left: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span{
+              margin-left: 5px;
+              font-size: 14px;
+            }
           }
         }
         .send {

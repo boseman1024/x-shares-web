@@ -22,7 +22,13 @@
         </div>
       </div>
       <div class="tags" v-if="!simple">
-        <div>#标签</div>
+        <unicon
+          class="pointer"
+          name="google-hangouts-alt"
+          fill="'#FF4500"
+          @click="changeHeart"
+        ></unicon>
+        <span class="pointer">{{ info.category.Name }}</span>
         <!--        <unicon class="pointer" name="ellipsis-h" fill="#262626"></unicon>-->
       </div>
     </div>
@@ -143,11 +149,14 @@ export default {
   }
   .tags {
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
-    height: 30px;
-    padding: 0 10px;
-    font-size: 14px;
+    height: 40px;
+    padding: 0 20px;
+    font-size: 15px;
+    span {
+      margin-left: 5px;
+    }
   }
 }
 </style>
